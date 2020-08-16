@@ -1,0 +1,8 @@
+.NewFams{
+    width: 40%;
+    margin: 20px auto;
+    border: 5px solid #ff4422;
+    box-shadow: 0 5px 10px #aa2211;
+    padding: 16px;
+    text-align: center;
+}
