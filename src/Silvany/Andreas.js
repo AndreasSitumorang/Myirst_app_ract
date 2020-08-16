@@ -1,22 +1,38 @@
 import React from 'react';
-import './Andreas.css';
-import Radium from 'radium';
+// import './Andreas.css';
+import styled from 'styled-components';
+
+const GayaDiv = styled.div`
+    width: 60%;
+    margin: 16px auto;
+    border: 1px solid #eee;
+    box-shadow: 0 2px 3px #ccc;
+    padding: 16px;
+    text-align: center;
+
+    @media (min-width: 500px) {
+    width: 450px;
+    }
+`;
+
 
 const person = (properti) => {
-    const gayamu ={
+    const gayamu = { 
         '@media (min-width: 500px)': {
             width: '450px'
         }
     };
     return (
-        <div className="NewFams" style={gayamu}>
+        // <div className="NewFams" style={gayamu}>
+        <GayaDiv>
             <p onClick={properti.click}>i am {properti.name} and myvalue is {properti.age}</p>
             <p>{properti.children}</p>
             <input type='text'
                 onChange={properti.berubah}
                 value={properti.name} />
-        </div>
-    )
+        </GayaDiv>
+        // </div>
+    );
 };
 
-export default Radium(person);
+export default person;

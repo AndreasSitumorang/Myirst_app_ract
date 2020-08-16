@@ -4,9 +4,24 @@ import './App.css';
 import { render } from '@testing-library/react';
 import Person from './Silvany/Andreas'
 import person from './Silvany/Andreas';
-import Radium, { StyleRoot } from 'radium';
+import styled from 'styled-components';
+
 // import Userinput from './Userinput/Userinput';
 // import Useroutput from './Useroutput/Useroutput';
+
+const Gayatombol = styled.button`
+  background-color: ${props => props.alternatif ? 'red' : 'green'};
+  color: white;
+  font: inherit;
+  border: 1px solid blue;
+  padding: 8px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: ${props => props.alternatif ? 'salmon' : 'lightgreen'};
+    color: black;
+  }
+`;
 
 
 class App extends Component {
@@ -92,7 +107,7 @@ class App extends Component {
             })}
           </div>
         );
-      gaya.backgroundColor = 'Red';
+      // gaya.backgroundColor = 'Red';
     }
 
     // let kelasss = ['red' ,'bold'].join(' ');
@@ -105,9 +120,9 @@ class App extends Component {
       kelasss.push('bold');
     }
     return (
-      <StyleRoot>
-        <div className="App">
-          {/* <header className="App-header">
+
+      <div className="App">
+        {/* <header className="App-header">
             <img src={logo} className="App-logo" alt="logo" />
             <p>
               Edit <code>src/App.js</code> and save to reload.
@@ -121,20 +136,21 @@ class App extends Component {
               Learn React
             </a>
           </header> */}
-          <h1>Hi myname is andreas</h1>
-          <p className={kelasss.join(' ')}>This realy work</p>
-          <button
-            className="Button"
-            style={gaya}
-            onClick={this.scrollName}> Switch person</button>
+        <h1>Hi myname is andreas</h1>
+        <p className={kelasss.join(' ')}>This realy work</p>
+        {/* <button
+          className="Button"
+          style={gaya} */}
+        <Gayatombol alternatif={this.state.showNama} onClick={this.scrollName}> Switch person
+         </Gayatombol>
 
-          {namakita}
-        </div>
-      </StyleRoot>
+        {namakita}
+      </div>
+
     );
     //return React.createElement('div',{className: 'App'}, React.createElement('h1',null,'hi , i\'m using whatsapp'));
 
   }
 }
 
-export default Radium(App);
+export default App;
