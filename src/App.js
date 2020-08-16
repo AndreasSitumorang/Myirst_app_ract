@@ -1,61 +1,112 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { render } from '@testing-library/react';
 import Person from './Silvany/Andreas'
-import Userinput from './Userinput/Userinput';
-import Useroutput from './Useroutput/Useroutput';
+import person from './Silvany/Andreas';
+import Radium, { StyleRoot } from 'radium';
+// import Userinput from './Userinput/Userinput';
+// import Useroutput from './Useroutput/Useroutput';
 
 
 class App extends Component {
   state = {
-    // team :[
-    //   {name : 'andreas', age : '21'},
-    //   {name : 'hasiholan', age :'22'},
-    //   {name : 'yesisca', age : '20'},
-    // ]
-    name: 'Silvany'
-  }
-
-  switchName = (event) =>{
-    this.setState({name: event.target.value})
+    team: [
+      { id: 'rpg', name: 'andreas', age: '21' },
+      { id: 'fps', name: 'hasiholan', age: '22' },
+      { id: 'mma', name: 'yesisca', age: '20' },
+    ],
+    showNama: false,
   }
 
   switchTeam = (namaBaru) => {
     // console.log('it clicked');
     this.setState(
       {
-        team :[
-          {name : 'Andreas', age : '25'},
-          {name : 'Silvany', age :'24'},
-          {name : namaBaru, age : '1'},
+        team: [
+          { name: 'Andreas', age: '25' },
+          { name: 'Silvany', age: '24' },
+          { name: namaBaru, age: '1' },
         ]
       }
     )
   }
 
-  perubahanNama = (pemicu) =>{
+  penghusan = (indexperorang) => {
+    const keluarga = this.state.team;
+    keluarga.splice(indexperorang, 1);
+    this.setState({ team: keluarga });
+  }
+
+  scrollName = () => {
+    const apakah = this.state.showNama;
+    this.setState({ showNama: !apakah });
+  }
+
+  perubahanNama = (pemicu, id) => {
+    const indeksSeseorang = this.state.team.findIndex(p => {
+      return p.id === id;
+    });
+
+    const seseorang = {
+      ...this.state.team[indeksSeseorang]
+    };
+    // const seseorang = Object.assign({}, this.state.team[indeksSeseorang]);
+
+    seseorang.name = pemicu.target.value;
+
+    const orang = [...this.state.team];
+    orang[indeksSeseorang] = seseorang;
     this.setState(
       {
-        team :[
-          {name : 'Andreas', age : '25'},
-          {name : 'Silvany', age :'24'},
-          {name : pemicu.target.value, age : '1'},
-        ]
+        team: orang
       }
-    )
+    );
   }
-  render (){
-    // const gaya = {
-    //   backgroundColor:'#c4c2c1',
-    //   font : 'inherit',
-    //   border: '3px solid grey',
-    //   padding: '8px',
-    //   cursor: 'pointer' 
-    // };
+  render() {
+    const gaya = {
+      backgroundColor: 'lightgray',
+      color: 'black',
+      border: '3px solid grey',
+      padding: '8px',
+      font: 'inherit',
+      cursor: 'pointer',
+      ':hover': {
+        backgroundColor: 'grey',
+        color: 'black'
+      }
+    };
 
-    return(
-      <div className="App">
+    let namakita = null;
+    if (this.state.showNama) {
+      namakita =
+        (
+          <div>
+            {this.state.team.map((kelompok, index) => {
+              return <Person
+                click={() => this.penghusan(index)}
+                name={kelompok.name}
+                age={kelompok.age}
+                key={kelompok.id}
+                berubah={(pemicu) => this.perubahanNama(pemicu, kelompok.id)} />
+            })}
+          </div>
+        );
+      gaya.backgroundColor = 'Red';
+    }
+
+    // let kelasss = ['red' ,'bold'].join(' ');
+    const kelasss = [];
+    if (this.state.team.length <= 2) {
+      kelasss.push('red');
+    }
+
+    if (this.state.team.length <= 1) {
+      kelasss.push('bold');
+    }
+    return (
+      <StyleRoot>
+        <div className="App">
           {/* <header className="App-header">
             <img src={logo} className="App-logo" alt="logo" />
             <p>
@@ -70,27 +121,20 @@ class App extends Component {
               Learn React
             </a>
           </header> */}
-         <h1>Hi myname is andreas</h1>
-         <p>This realy work</p>
-         <button 
-          className = "Button"
-        //  style={gaya} 
-          onClick={this.switchTeam.bind(this, 'Hanibal')}> Switch person</button>
-         {/* <Person name = {this.state.team[0].name} age = {this.state.team[0].age}>I am the engginer</Person>
-         <Person name = {this.state.team[1].name} age = {this.state.team[1].age}/>
-         <Person name = {this.state.team[2].name} age = {this.state.team[2].age} 
-         click = {this.switchTeam.bind(this, 'Lilya')} berubah = {this.perubahanNama}/> */}
-        <br/><br/>
-         <Userinput switch={this.switchName} namaSekarang={this.state.name}/>
-         <Useroutput nama={this.state.name}/>
-         <Useroutput nama={this.state.name}/>
-         <Useroutput nama='Andreas'/>
-      </div> 
-      
+          <h1>Hi myname is andreas</h1>
+          <p className={kelasss.join(' ')}>This realy work</p>
+          <button
+            className="Button"
+            style={gaya}
+            onClick={this.scrollName}> Switch person</button>
+
+          {namakita}
+        </div>
+      </StyleRoot>
     );
     //return React.createElement('div',{className: 'App'}, React.createElement('h1',null,'hi , i\'m using whatsapp'));
-    
+
   }
 }
 
-export default App;
+export default Radium(App);

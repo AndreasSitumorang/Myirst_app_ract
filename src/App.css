@@ -2,14 +2,22 @@
   text-align: center;
 }
 
-.Button{
-  background-color:'#c4c2c1';
+/* .Button {
+  background-color: lightgray;
+  color:black;
   border: 3px solid grey;
   padding: 8px;
-  font: inherit;  
+  font: inherit;
   cursor: pointer;
+} */
+
+.red{
+  color: darkolivegreen;
 }
 
+.bold{
+  font-weight: bold;
+}
 /* .App-logo {
   height: 40vmin;
   pointer-events: none;
