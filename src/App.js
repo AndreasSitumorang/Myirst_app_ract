@@ -1,27 +1,27 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import './App.css';
+import spesialGaya from './App.css';
 import { render } from '@testing-library/react';
 import Person from './Silvany/Andreas'
 import person from './Silvany/Andreas';
-import styled from 'styled-components';
+//import styled from 'styled-components';
 
 // import Userinput from './Userinput/Userinput';
 // import Useroutput from './Useroutput/Useroutput';
 
-const Gayatombol = styled.button`
-  background-color: ${props => props.alternatif ? 'red' : 'green'};
-  color: white;
-  font: inherit;
-  border: 1px solid blue;
-  padding: 8px;
-  cursor: pointer;
+// const Gayatombol = styled.button`
+//   background-color: ${props => props.alternatif ? 'red' : 'green'};
+//   color: white;
+//   font: inherit;
+//   border: 1px solid blue;
+//   padding: 8px;
+//   cursor: pointer;
 
-  &:hover {
-    background-color: ${props => props.alternatif ? 'salmon' : 'lightgreen'};
-    color: black;
-  }
-`;
+//   &:hover {
+//     background-color: ${props => props.alternatif ? 'salmon' : 'lightgreen'};
+//     color: black;
+//   }
+// `;
 
 
 class App extends Component {
@@ -79,19 +79,19 @@ class App extends Component {
     );
   }
   render() {
-    const gaya = {
-      backgroundColor: 'lightgray',
-      color: 'black',
-      border: '3px solid grey',
-      padding: '8px',
-      font: 'inherit',
-      cursor: 'pointer',
-      ':hover': {
-        backgroundColor: 'grey',
-        color: 'black'
-      }
-    };
-
+    // const gaya = {
+    //   backgroundColor: 'lightgray',
+    //   color: 'black',
+    //   border: '3px solid grey',
+    //   padding: '8px',
+    //   font: 'inherit',
+    //   cursor: 'pointer',
+    //   ':hover': {
+    //     backgroundColor: 'grey',
+    //     color: 'black'
+    //   }
+    // };
+    let tmblWarna = [spesialGaya.Tombol];
     let namakita = null;
     if (this.state.showNama) {
       namakita =
@@ -107,21 +107,21 @@ class App extends Component {
             })}
           </div>
         );
-      // gaya.backgroundColor = 'Red';
+      tmblWarna.push(spesialGaya.merah);
     }
 
     // let kelasss = ['red' ,'bold'].join(' ');
     const kelasss = [];
     if (this.state.team.length <= 2) {
-      kelasss.push('red');
+      kelasss.push(spesialGaya.red);
     }
 
     if (this.state.team.length <= 1) {
-      kelasss.push('bold');
+      kelasss.push(spesialGaya.bold);
     }
     return (
 
-      <div className="App">
+      <div className={spesialGaya.App}>
         {/* <header className="App-header">
             <img src={logo} className="App-logo" alt="logo" />
             <p>
@@ -141,8 +141,8 @@ class App extends Component {
         {/* <button
           className="Button"
           style={gaya} */}
-        <Gayatombol alternatif={this.state.showNama} onClick={this.scrollName}> Switch person
-         </Gayatombol>
+        <button className={tmblWarna.join(' ')} onClick={this.scrollName}> Switch person
+         </button>
 
         {namakita}
       </div>

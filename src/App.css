@@ -18,6 +18,30 @@
 .bold{
   font-weight: bold;
 }
+
+.Tombol{
+  background-color: gray;
+  color: white;
+  font: inherit;
+  border: 1px solid blue;
+  padding: 8px;
+  cursor: pointer;
+}
+
+
+.Tombol:hover {
+  background-color: lightblue;
+  color: black;
+}
+
+.Tombol.merah{
+  background-color: rebeccapurple;
+}
+
+.Tombol.merah:hover{
+  background-color: lightskyblue;
+}
+
 /* .App-logo {
   height: 40vmin;
   pointer-events: none;
