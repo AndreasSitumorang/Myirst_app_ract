@@ -5,10 +5,10 @@ import Makanan from '../../component/Makanan/Makanan'
 class RumahMakan extends Component{
     state ={
         bahan:{
-            salad:1,
-            bacon:1,
-            cheese:2,
-            meat:2
+            salad:0,
+            bacon:0,
+            cheese:0,
+            meat:0,
         }
     }
 
