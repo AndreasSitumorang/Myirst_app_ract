@@ -19,7 +19,15 @@ class Bumbu extends Component{
             case('meat'):
                     bahan= <div className={kelas.Meat}></div>;
                     break;
-    
+            case('cheese'):
+                    bahan= <div className={kelas.Cheese}></div>;
+                    break;
+            case('salad'):
+                    bahan= <div className={kelas.Salad}></div>;
+                    break;
+            case('bacon'):
+                    bahan= <div className={kelas.Bacon}></div>;
+                    break;
             default:
                 bahan = null;
         }
