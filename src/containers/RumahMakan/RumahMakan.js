@@ -1,12 +1,13 @@
 import React,{Component} from 'react';
 import Aux from '../../hoc/Aux';
+import Makanan from '../../component/Makanan/Makanan'
 
 class RumahMakan extends Component{
     render(){
         return(
             <Aux>
-                <div>Burger king</div>
-                <div>Ramen Mashu</div>
+                <Makanan/>
+                <div>Ramen asdasdadada</div>
             </Aux>
         );
     }
